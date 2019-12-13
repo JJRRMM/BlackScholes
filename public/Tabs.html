@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<div class="container py-5">
+        <!-- For demo purpose -->       
+          <div class="col-lg-8 text-danger py-4 text-center mx-auto">
+            <h1 class="display-4">Black Scholes Calculation</h1>
+            <p class="lead mb-0">Tabs will be used for calls and puts.</p>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+            <script src="https://code.jquery.com/jquery.js"></script>
+            </p>
+          </div>
+        </div> 
+        <!-- End -->            
+        <div class="p-5 bg-white rounded shadow mb-5">
+          <!-- Rounded tabs -->
+          <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
+            <li class="nav-item flex-sm-fill">
+              <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active">Call</a>
+            </li>
+            <li class="nav-item flex-sm-fill">
+              <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Put</a>
+            </li>
+            <li class="nav-item flex-sm-fill">
+              <a id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Future</a>
+            </li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class ="form-horizontal"> 
+            <div class="row">
+               <div class="col-lg-12">
+                <form>
+                        <div class="form-group">
+                            <!-- <div class="col-sm-2 form-inline"> -->
+                            <label class="col-sm-2 control-label">Strike Price</label>  
+                            <!-- <label for="spotprice">Spot Price: </label> -->
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="sprice">
+                            </div>    
+                        <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline">
+                            <label for="Strikeprice">Strike Price:</label>
+                            <input type="number" class="form-control" id="kprice">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline">
+                            <label for="Rate">Risk Free Rate:</label>
+                            <input type="number" class="form-control" id="rate">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="form-inline">
+                            <label for="Risk">Volatility (sigma):</label>
+                            <input type="number" class="form-control" id="sigma">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="form-inline"> 
+                            <label for="time">Time to maturity:</label>
+                            <input type="number" class="form-control" id="time">
+                            </div>  
+                          </div>   
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">Calculation</h4>
+                            </div>
+                            <div class="panel-body" id="calcSection">
+                            </div>
+                          </div>                  
+                          <!-- <div class="form-group">
+                            <div class="form-inline"> 
+                            <label for="Price">Price:</label>
+                            <input type="number" class="form-control" id="price">
+                            </div>   -->
+                          </div>    
+                        <button type="calc" class="btn btn-primary calc">Calculate</button>
+                      </form>
+                      </div>
+                    </div>
+            
+            <div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
+              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div id="contact" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
+              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+           
+          </div>
+        </div>
+          <!-- End rounded tabs -->
+          
+        </div>
+        
+        </html>
+        <script type="text/javascript">
+          // In this code below we calculate the black scholes price          
+          const url = "localhost:3000/"
+          $(".calc").on("click", function(event) {
+            event.preventDefault();      
+            // Here we grab the form elements
+            var newCalulation = {
+              sprice: $("#sprice").val().trim(),
+              kprice: $("#kprice").val().trim(),
+              rate: $("#rate").val().trim(),
+              sigma: $("#sigma").val().trim(),
+              time: $("#time").val().trim()
+            };
+            var S = "50";
+            var K = "50";
+            console.log(newCalulation);
+            var Calcparams = "?func=BCALL&S=" & S & "&K=" & K; 
+            console.log(Calcparams); 
+            // Execute the get below: 
+            var Calctest = "/api/black?func=BSPUT&S=50&K=50&r=.10&sigma=.30&time=.50"
+            // localhost:8080/api/black?func=BSCALL&S=50&K=50&r=.10&sigma=.30&time=.50                  
+            // $.get(Calctest, function( data) {
+            //   console.log(data);
+            // Grab the url that the server is running on. 
+              var currentURL = window.location.origin;
+              // console.log("Just before ajax call", currentURL);
+              $.ajax({ url: currentURL + Calctest, method: "GET" })
+              .then(function(BlackData) {
+              console.log("in the ajax call ", BlackData)  
+            // Add a div with the price data wrapped by html. 
+              var calcSection = $("<div>");
+              calcSection.addClass("price");
+              calcSection.attr("id", "prices-");
+              $("#calcSection").append(calcSection);
+              $("#prices-").append("<h3><spann class='label label-primary'>" + "price: " + BlackData);            
+            }); 
+                           
+          });
+          // $.ajax()
+          </script>

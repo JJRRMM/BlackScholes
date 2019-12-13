@@ -1,0 +1,19 @@
+{
+  "name": "blackscholes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test.js --exit",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "child_process": "^1.0.2",
+    "express": "^4.17.1",
+    "mocha": "^6.2.2"
+  }
+}

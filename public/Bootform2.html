@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap BlackScholes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Black Scholes Calculation</h2>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="spot">Spot Price:</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="S" placeholder="Enter Spot Price" name="spot">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="strike">Strike Price:</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="K" placeholder="Enter Strike Price" name="strike">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="rate">Risk Free Rate:</label>
+                <div class="col-sm-4">
+                    <input type="number" step="0.01" class="form-control" id="R" placeholder="Enter Risk Free Rate" name="rate">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Volatility">Volatility:</label>
+                <div class="col-sm-4">
+                    <input type="number" step="0.01" class="form-control" id="V" placeholder="Enter Volatility (% per year):"
+                        name="sigma">
+                </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label col-sm-2" for="Time">Time to Maturity:</label>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" id="T" placeholder="Enter Time to Maturity"
+                            name="time">
+                    </div>
+                </div>
+            <div class="form-group">
+                    <label class="control-label col-sm-2" for="Price">Calulated Price:</label>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" readonly class="form-control-plaintext" id="P" placeholder="Calulated Price"
+                            name="price">
+                    </div>
+             </div>  
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="remember"> Call </label>
+                    </div>
+                </div>
+            </div>             
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="calc" class="btn btn-primary calc">Calculate</button>
+                </div>
+            </div>
+            <div class="Panel-body" id="calcSection">
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    // In this code below we calculate the black scholes price          
+    const url = "localhost:3000/"
+    $(".calc").on("click", function(event) {
+      event.preventDefault();      
+      // Here we grab the form elements
+       var newCalculation = {
+        sprice: $("#S").val().trim(),
+        kprice: $("#K").val().trim(),
+        rate: $("#R").val().trim(),
+        sigma: $("#V").val().trim(),
+        time: $("#T").val().trim()
+      };       
+       var S = 50;
+       var K = 50;
+       var R = .10
+       var V = .30
+       var T = .50
+       console.log("newCalculation sprice is " ,newCalculation.sprice);
+     // console.log(newCalulation);
+     // var Calcparams = '?func=BCALL&S=' & S & '&K=' & K & "&R=" & R & "&V=" & V & "&T=" & T ; 
+     var func = "BSCALL";
+     var Calcparams = "/api/black?func=" + func + "&S=" + S + "&K=" + K + "&r=" + R + "&sigma=" + V + "&time=" + T ;
+      console.log("Calcparams = ", Calcparams); 
+      // Execute the get below: 
+      var Calctest = "/api/black?func=BSPUT&S=50&K=50&r=.10&sigma=.30&time=.50"
+      console.log("Calctest is " , Calctest);
+      // localhost:8080/api/black?func=BSCALL&S=50&K=50&r=.10&sigma=.30&time=.50                  
+      // $.get(Calctest, function( data) {
+      //   console.log(data);
+      // Grab the url that the server is running on. 
+        var currentURL = window.location.origin;
+        // console.log("Just before ajax call", currentURL);
+        $.ajax({ url: currentURL + Calcparams, method: "GET" })
+        .then(function(BlackData) {
+        console.log("in the ajax call ", BlackData)         
+      // Add a div with the price data wrapped by html. 
+        $("#P").val(BlackData["Price"]);
+        var calcSection = $("<div>");
+        calcSection.addClass("price");
+        calcSection.attr("id", "prices-","col-sm-4");
+        $("#calcSection").append(calcSection);
+        $("#prices-").append("<h2><spann class='label label-primary'>" + "Price:   " + BlackData["Price"]);            
+      }); 
+                     
+    });
+    // $.ajax()
+    </script>
